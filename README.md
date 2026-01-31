@@ -19,8 +19,7 @@ mlproject-main/
 ├── artifacts/              # Saved models and preprocessors (.pkl files)
 ├── notebook/               # Jupyter notebooks for EDA & experiments
 ├── app.py                  # Flask web application
-├── fastapi_app.py          # FastAPI web application
-├── streamlit_app.py        # Streamlit dashboard
+├── streamlit_frontend.py   # Streamlit dashboard
 ├── requirements.txt        # Python dependencies
 ├── setup.py                # Package setup script
 └── README.md               # Project documentation
@@ -44,7 +43,6 @@ mlproject-main/
 
 * **Multiple Web Interfaces**
 
-  * **FastAPI**: High-performance REST API with auto-generated Swagger documentation
   * **Streamlit**: Interactive UI for quick testing and visualization
 
 * **Robust Error Handling**
@@ -89,16 +87,14 @@ pip install -r requirements.txt
 
 ## ▶️ Usage
 
-### 🔹 1. Run the FastAPI Application
-
-The FastAPI app provides a REST API along with Swagger UI documentation.
+### 🔹 1. Run Flask Backend
 
 ```bash
-python fastapi_app.py
+python app.py
 ```
 
-* **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-* **API Base URL**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+* **Flask App**: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+* **API Endpoint**: [http://127.0.0.1:5000/predict_api](http://127.0.0.1:5000/predict_api)
 
 ---
 
@@ -107,12 +103,25 @@ python fastapi_app.py
 The Streamlit app offers an interactive interface for predicting student exam scores.
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run streamlit_frontend.py
 ```
 
-* **Application URL**: [http://localhost:8501](http://localhost:8501)
+* **Streamlit App**: [http://localhost:8501](http://localhost:8501)
 
 ---
+
+## ▶️ Application Flow
+
+User (Streamlit UI)
+        →
+Flask REST API (/predict_api)
+        →
+Preprocessor + ML Model
+        →
+Prediction Result
+        →
+Displayed in Streamlit
+
 
 ## 🔄 Data Pipeline Details
 
